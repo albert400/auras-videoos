@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impostazioni Account - Auras Videoos</title>
+    <style>
+        /* Stili principali */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+            background-color: #000;
+            border-bottom: 2px solid #00bcd4;
+        }
+
+        header h1 {
+            color: #00bcd4;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        #main-menu {
+            width: 250px;
+            background-color: #1e1e1e;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        #main-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #main-menu ul li {
+            margin: 15px 0;
+        }
+
+        #main-menu ul li a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        #menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #00bcd4;
+            z-index: 1100;
+        }
+
+        .menu-visible #menu-toggle {
+            display: none;
+        }
+
+        #menu-close {
+            font-size: 24px;
+            color: #00bcd4;
+            text-align: right;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .menu-visible #main-menu #menu-close {
+            display: block;
+        }
+
+        .menu-visible #main-menu {
+            left: 0;
+        }
+
+        #settings-menu {
+            width: 250px;
+            background-color: transparent;
+            height: calc(100vh - 50px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            z-index: 500;
+        }
+
+        #settings-menu button {
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #00bcd4;
+            background-color: transparent;
+            color: white;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #settings-menu button:hover {
+            background-color: #00bcd4;
+            color: white;
+        }
+
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .section button:hover {
+            background-color: #0097a7;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-toggle" onclick="toggleMainMenu()">☰</div>
+    <div id="main-menu">
+        <div id="menu-close" onclick="toggleMainMenu()">✖</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="film.html">Catalogo Film</a></li>
+            <li><a href="serie-tv.html">Catalogo Serie TV</a></li>
+            <li><a href="account.html">Impostazioni Account</a></li>
+        </ul>
+    </div>
+
+    <div id="settings-menu">
+        <button onclick="showSection('account-info')">Informazioni Account</button>
+        <button onclick="showSection('profiles')">Profili</button>
+        <button onclick="showSection('subscription')">Abbonamento</button>
+        <button onclick="showSection('security')">Sicurezza</button>
+    </div>
+
+    <div class="content">
+        <header>
+            <h1>Impostazioni Account</h1>
+        </header>
+
+        <div id="account-info" class="section active">
+            <h2>Informazioni Account</h2>
+            <p>Nome Utente: utente_esempio</p>
+            <p>Email: utente@email.com</p>
+            <button onclick="alert('Modifica Nome Utente')">Modifica Nome Utente</button>
+            <button onclick="alert('Modifica Email')">Modifica Email</button>
+        </div>
+
+        <div id="profiles" class="section">
+            <h2>Profili</h2>
+            <div style="display: flex; align-items: center;">
+                <img src="#" alt="Icona Profilo" style="width: 50px; height: 50px; margin-right: 10px;">
+                <button style="padding: 10px 15px; font-size: 16px;">+</button>
+            </div>
+        </div>
+
+        <div id="subscription" class="section">
+            <h2>Abbonamento</h2>
+            <p>Dettagli del Piano: Premium</p>
+            <p>Prossimo Pagamento: 10/01/2025</p>
+            <button onclick="alert('Modifica Piano')">Modifica Piano</button>
+            <button onclick="alert('Gestisci Metodi di Pagamento')">Metodi di Pagamento</button>
+            <button onclick="alert('Annulla Abbonamento')">Annulla Abbonamento</button>
+        </div>
+
+        <div id="security" class="section">
+            <h2>Sicurezza</h2>
+            <p>Numero di Telefono: +39 123 456 7890</p>
+            <p>Email: utente@email.com</p>
+            <button onclick="alert('Modifica Password')">Modifica Password</button>
+            <button onclick="alert('Elimina Account')" style="background-color: red;">Elimina Account</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMainMenu() {
+            document.body.classList.toggle("menu-visible");
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
